@@ -24,5 +24,4 @@ class PostingsExtractor:
 
     @staticmethod
     def validate_response(res):
-        return (res.status_code == 200
-                & len(res.content) > 0)
+        return ((res.status_code == 200) & (len(res.content) > 0))
