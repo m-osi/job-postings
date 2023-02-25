@@ -1,0 +1,5 @@
+2023-02-25 22:03:20,932 etl.py               56    INFO       Starting ETL job
+2023-02-25 22:03:21,461 extract.py           21    DEBUG      Data extracted successfully from: https://justjoin.it/api/offers
+2023-02-25 22:03:24,337 transform.py         20    INFO       Data transformed successfully
+2023-02-25 22:03:39,366 load.py              104   INFO       Data successfully loaded to the database
+2023-02-25 22:03:39,399 etl.py               60    INFO       Job finished successfully
