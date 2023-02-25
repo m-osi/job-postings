@@ -1,6 +1,8 @@
 import pandas as pd
 import json
+import logging
 
+logger = logging.getLogger("__main__")
 
 class PostingsTransformer:
 
@@ -15,6 +17,7 @@ class PostingsTransformer:
                    'salary.from': 'salary_from',
                    'salary.currency': 'salary_currency'}, axis=1, inplace=True)
         df.drop_duplicates(inplace=True)
+        logger.info("Data transformed successfully")
         # df = df[df.set_index(list(self.params.keys()))
         #         .index.isin(zip(*list(self.params.values())))]
 

@@ -4,6 +4,9 @@ from sqlalchemy.sql import func
 from sqlalchemy import (
     Column, String, Integer, Float, DateTime, Boolean
 )
+import logging
+
+logger = logging.getLogger("__main__")
 
 Base = declarative_base()
 
@@ -98,8 +101,9 @@ class PostingsLoader:
             self.session.bulk_insert_mappings(
                 Offer, df.to_dict(orient="records"))
             self.session.commit()
+            logger.info("Data successfully loaded to the database")
         except Exception as e:
-            print(f"Exception occured. Details: {e}")
-            raise
+            logger.error(f"Exception occured. Details: {e}")
+            raise Exception
         finally:
             self.session.close()

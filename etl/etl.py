@@ -2,6 +2,29 @@ from extract import PostingsExtractor
 from transform import PostingsTransformer
 from load import PostingsLoader
 from config.config import SOURCE_URL, CONNECTION_STRING
+from datetime import datetime
+import os
+import logging
+
+def setup_logger(name, log_file, level=logging.INFO):
+    handler = logging.FileHandler(log_file)
+    formatter = logging.Formatter(
+        "%(asctime)s %(filename)-20s %(lineno)-5d %(levelname)-10s %(message)s"
+    )
+    handler.setFormatter(formatter)
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+    return logger
+
+
+current_date = datetime.now().strftime(r"%d%m%Y_%H%M%S")
+
+logger = setup_logger(
+    __name__,
+    log_file=f"{os.environ['PYTHONPATH']}/logs/{current_date}.log",
+    level=logging.DEBUG,
+)
 
 class ETLJob:
     def __init__(self, extractor, transformer, loader):
@@ -30,7 +53,11 @@ def main():
         loader=loader
     )
 
+    logger.info("Starting ETL job")
+
     etl.run_etl()
+
+    logger.info("Job finished successfully")
 
 if __name__ == "__main__":
     main()
