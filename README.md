@@ -1,2 +1,2 @@
 # job-postings
-ETL job and analysis of data scraped from a job posting platform
+Sample ETL job to obtain data from job postings platform's API, transform it and load into a dockerized postgreSQL database using ORM
